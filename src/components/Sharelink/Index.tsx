@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const SharedFormView = () => {
   const [questions, setQuestions] = useState([]);
   const { id, email } = useParams();
   const [answers, setAnswers] = useState([]);
   const [formDetails, setFormDetails] = useState({
     name: "",
-    email: "",
+    emailofResponse: "", // Updated to correctly reflect the user input field
   });
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const SharedFormView = () => {
   };
 
   const handleSubmit = async () => {
-    if (!formDetails.name || !formDetails.email) {
+    if (!formDetails.name || !formDetails.emailofResponse) {
       alert("Please fill in your name and email before submitting.");
       return;
     }
@@ -76,23 +77,33 @@ const SharedFormView = () => {
       });
 
       const payload = {
-        email: formDetails.email,
+        fromEmail: email, // Email from the URL
+        userEmail: formDetails.emailofResponse, // Correctly using emailofResponse
         name: formDetails.name,
         title: id,
         responses: formattedAnswers,
       };
 
-
-      const response = await axios.post(
-        `${apiUrl}/submit-ans`,
-        payload
-      );
+      const response = await axios.post(`${apiUrl}/submit-ans`, payload);
       alert("Form submitted successfully!");
       console.log(response.data);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to submit the form. Please try again.");
     }
+  };
+
+  const handleCopyClick = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        alert("Link copied to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Error copying the link: ", error);
+        alert("Failed to copy the link.");
+      });
   };
 
   if (!questions || questions.length === 0) {
@@ -103,17 +114,7 @@ const SharedFormView = () => {
       </div>
     );
   }
-  const handleCopyClick = () => {
-  const currentUrl = window.location.href;
-  navigator.clipboard
-    .writeText(currentUrl)
-    .then(() => {
-      alert("Link copied to clipboard!");
-    })
-    .catch((error) => {
-      console.error("Error copying the link: ", error);
-      alert("Failed to copy the link.");
-    });}
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-4xl">
@@ -143,8 +144,10 @@ const SharedFormView = () => {
           </label>
           <input
             type="email"
-            value={formDetails.email}
-            onChange={(e) => handleFormDetailsChange("email", e.target.value)}
+            value={formDetails.emailofResponse} // Bind to the correct field
+            onChange={(e) =>
+              handleFormDetailsChange("emailofResponse", e.target.value)
+            }
             placeholder="Enter your email"
             className="w-full p-2 border rounded-lg"
           />

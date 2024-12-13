@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useLocation, useNavigate } from "react-router-dom";
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const ItemType = {
   FORM_FIELD: "formField",
 };
