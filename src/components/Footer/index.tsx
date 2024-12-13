@@ -5,7 +5,6 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 mt-8 text-white py-8">
       <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Name and Tagline */}
         <div>
           <h2 className="text-2xl font-bold">Praveen</h2>
           <p className="text-gray-400">
@@ -13,10 +12,9 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Contact Information */}
         <div>
           <h3 className="text-xl font-semibold mb-2">Contact Me</h3>
-          <p>Email: <a href="mailto:praveen@example.com" className="text-blue-400 hover:underline">praveen@example.com</a></p>
+          <p>Email: <a href="mailto:praveen@example.com" className="text-blue-400 hover:underline">psgpraveen08@gmail.com</a></p>
           <p>Phone: +91-9876543210</p>
           <p>Location: India</p>
         </div>
