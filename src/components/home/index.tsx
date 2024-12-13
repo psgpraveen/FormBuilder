@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -51,8 +51,12 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const ITEM = location.state?.item;
   console.log(ITEM);
-  const [title, setTitle] = useState(ITEM? ITEM.title: '');
-  
+  const [title, setTitle] = useState(ITEM ? ITEM.title : "");
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // Navigates back to the previous page
+  };
   useEffect(() => {
     if (ITEM?.questions) {
       setQuestions(ITEM.questions);
@@ -165,7 +169,9 @@ const Home = () => {
         </div>
 
         <div className="flex-1 p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Form Builder</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            Form Builder
+          </h2>
           <div className="mb-6">
             <input
               type="text"
@@ -312,6 +318,12 @@ const Home = () => {
               Submit Form
             </button>
           </div>
+          <button
+            onClick={handleBack}
+            className="w-full p-3 bg-green-700 my-8 text-white rounded-lg shadow hover:bg-green-400 transition-colors duration-300"
+            >
+            Back to previous page
+          </button>
         </div>
       </div>
     </DndProvider>

@@ -8,6 +8,7 @@ const Home = lazy(() => import("./components/home/index"));
 const Lob = lazy(() => import("./components/Lob/index"));
 const SignUp = lazy(() => import("./components/SignUp/Index"));
 const Responses = lazy(() => import("./components/Response/index"));
+const Footer = lazy(() => import("./components/Footer/index"));
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
           <Route path="/response/:name" element={<Responses />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
-          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <Footer/>
       </Suspense>
     </Router>
   );
