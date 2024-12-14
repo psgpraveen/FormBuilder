@@ -158,7 +158,7 @@ const Home = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="min-h-screen flex bg-gray-50">
-        <div className="w-1/4 p-4 bg-white border-r shadow-md">
+        <div className="w-1/4 p-2 bg-white border-r shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Toolbox</h2>
           <DraggableField name="Text Input" type="text" />
           <DraggableField name="Number Input" type="number" />
@@ -168,7 +168,7 @@ const Home = () => {
           <DraggableField name="Radio Buttons" type="radio" />
         </div>
 
-        <div className="flex-1 p-6">
+        <div className="flex-1  p-2">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Form Builder
           </h2>
@@ -303,28 +303,28 @@ const Home = () => {
               ))
             )}
           </DropZone>
-          <div className="mt-6">
+          <div className="mt-6  ">
             <input
               type="password"
-              placeholder="Set a password for your form"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 border rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-200 mb-4"
-            />
+            />  <br/>
             <button
               onClick={handleSubmitForm}
               className="w-full p-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-colors duration-300"
             >
               {update ? "Update Form" : " Submit Form"}
             </button>
-          </div>
+        <br/>
           <button
             onClick={handleBack}
-            className="w-full p-3 bg-indigo-600 hover:bg-indigo-300 my-8 text-white rounded-lg shadow  transition-colors duration-300"
+            className="w-full p-3 mx-auto bg-indigo-600 justi hover:bg-indigo-300 my-8 text-white rounded-lg shadow  transition-colors duration-300"
           >
             Back to previous page
           </button>
-        </div>
+        </div>  </div>
       </div>
     </DndProvider>
   );
