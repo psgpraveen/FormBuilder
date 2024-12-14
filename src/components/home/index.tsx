@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -49,17 +50,19 @@ const Home = () => {
   const user = location.state?.user;
   const [questions, setQuestions] = useState([]);
   const [password, setPassword] = useState("");
+  const [update, setupdate] = useState(false);
+  const [linkon, setLinkon] = useState("submit-form");
   const ITEM = location.state?.item;
-  console.log(ITEM);
   const [title, setTitle] = useState(ITEM ? ITEM.title : "");
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1); // Navigates back to the previous page
+    navigate(-1);
   };
   useEffect(() => {
     if (ITEM?.questions) {
       setQuestions(ITEM.questions);
+      setupdate(true);
     }
   }, [ITEM]);
 
@@ -131,24 +134,21 @@ const Home = () => {
     const formData = {
       email: user.Email,
       password,
+      ID: ITEM ? ITEM._id : " " ,
       title,
       questions,
     };
 
     try {
-      const response = await fetch(`${apiUrl}/submit-form`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post( update
+        ? `${apiUrl}/update-form` :`${apiUrl}/${linkon}`, {
+            formData,
+          });
 
-      const data = await response.json();
-      if (response.ok) {
-        alert("Form submitted successfully");
+      if (response.status === 200) {
+        alert(response.data.message);
       } else {
-        alert("Error submitting form");
+        alert(response.data.message);
       }
     } catch (error) {
       alert("Error submitting form");
@@ -315,13 +315,13 @@ const Home = () => {
               onClick={handleSubmitForm}
               className="w-full p-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-colors duration-300"
             >
-              Submit Form
+              {update ? "Update Form" : " Submit Form"}
             </button>
           </div>
           <button
             onClick={handleBack}
-            className="w-full p-3 bg-green-700 my-8 text-white rounded-lg shadow hover:bg-green-400 transition-colors duration-300"
-            >
+            className="w-full p-3 bg-indigo-600 hover:bg-indigo-300 my-8 text-white rounded-lg shadow  transition-colors duration-300"
+          >
             Back to previous page
           </button>
         </div>
