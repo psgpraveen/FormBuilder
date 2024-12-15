@@ -9,7 +9,7 @@ const SharedFormView = () => {
   const [answers, setAnswers] = useState([]);
   const [formDetails, setFormDetails] = useState({
     name: "",
-    emailofResponse: "", // Updated to correctly reflect the user input field
+    emailofResponse: "", 
   });
 
   useEffect(() => {
@@ -77,8 +77,8 @@ const SharedFormView = () => {
       });
 
       const payload = {
-        fromEmail: email, // Email from the URL
-        userEmail: formDetails.emailofResponse, // Correctly using emailofResponse
+        fromEmail: email, 
+        userEmail: formDetails.emailofResponse, 
         name: formDetails.name,
         title: id,
         responses: formattedAnswers,
@@ -144,7 +144,7 @@ const SharedFormView = () => {
           </label>
           <input
             type="email"
-            value={formDetails.emailofResponse} // Bind to the correct field
+            value={formDetails.emailofResponse}
             onChange={(e) =>
               handleFormDetailsChange("emailofResponse", e.target.value)
             }

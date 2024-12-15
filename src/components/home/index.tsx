@@ -161,14 +161,31 @@ const Home = () => {
     <DndProvider backend={HTML5Backend}>
       <div className="min-h-screen md:flex bg-gray-50">
         <div className="w-1/4 p-2 bg-white border-r shadow-md">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Toolbox</h2>
-          <div className="flex  gap-4  flex-wrap w-24 lg:flex-none">
-            <DraggableField name="Text Input" type="text" />
-            <DraggableField name="Number Input" type="number" />
-            <DraggableField name="Date Picker" type="date" />
-            <DraggableField name="Checkbox" type="checkbox" />
-            <DraggableField name="Dropdown Select" type="dropdown" />
-            <DraggableField name="Radio Buttons" type="radio" />
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 hover:text-indigo-600 transition-colors duration-300">
+            Toolbox
+          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 hover:text-indigo-600 transition-colors duration-300">
+            Drag this to Create Form
+          </h2>
+          <div className="flex flex-wrap lg:block gap-4 justify-normal w-full">
+            <div className="w-1/3">
+              <DraggableField name="Text Input" type="text" />
+            </div>
+            <div className="w-1/3 ">
+              <DraggableField name="Number Input" type="number" />
+            </div>
+            <div className="w-1/3 ">
+              <DraggableField name="Date Picker" type="date" />
+            </div>
+            <div className="w-1/3 ">
+              <DraggableField name="Checkbox" type="checkbox" />
+            </div>
+            <div className="w-1/3 ">
+              <DraggableField name="Dropdown Select" type="dropdown" />
+            </div>
+            <div className="w-1/3">
+              <DraggableField name="Radio Buttons" type="radio" />
+            </div>
           </div>
         </div>
 
