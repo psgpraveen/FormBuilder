@@ -259,6 +259,9 @@ const Home = () => {
                   )}
                   {q.fieldType === "dropdown" && (
                     <div>
+                      <option value="" disabled selected>
+                        Select an option
+                      </option>
                       {q.options.map((option, index) => (
                         <div key={index} className="flex items-center mb-2">
                           <input

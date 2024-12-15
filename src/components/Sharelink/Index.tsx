@@ -200,7 +200,9 @@ const SharedFormView = () => {
                 <select
                   onChange={(e) => handleInputChange(q, e.target.value)}
                   className="w-full p-2 border rounded-lg"
-                >
+                ><option value="" disabled selected>
+                Select an option
+              </option>
                   {q.options.map((option, idx) => (
                     <option key={idx} value={option}>
                       {option}
