@@ -1,0 +1,14 @@
+{
+    "rewrites": [
+      {
+        "source": "/lob/(.*)",
+        "destination": "/index.html"
+      },
+     
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
+      }
+    ]
+  }
+  
