@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const response = await axios.post(`${apiUrl}/login`, { email, password });
       if (response.data?.message === 'Login successfully') {
-        localStorage.setItem('token', response.data.token);
+        
         navigate('/lob', { state: { user: response.data.user } });
       } else {
         setErrorMessage(response.data?.message || 'Invalid credentials');

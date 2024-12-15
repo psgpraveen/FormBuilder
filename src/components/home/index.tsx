@@ -134,16 +134,18 @@ const Home = () => {
     const formData = {
       email: user.Email,
       password,
-      ID: ITEM ? ITEM._id : " " ,
+      ID: ITEM ? ITEM._id : " ",
       title,
       questions,
     };
 
     try {
-      const response = await axios.post( update
-        ? `${apiUrl}/update-form` :`${apiUrl}/${linkon}`, {
-            formData,
-          });
+      const response = await axios.post(
+        update ? `${apiUrl}/update-form` : `${apiUrl}/${linkon}`,
+        {
+          formData,
+        }
+      );
 
       if (response.status === 200) {
         alert(response.data.message);
@@ -160,12 +162,14 @@ const Home = () => {
       <div className="min-h-screen md:flex bg-gray-50">
         <div className="w-1/4 p-2 bg-white border-r shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Toolbox</h2>
-          <DraggableField name="Text Input" type="text" />
-          <DraggableField name="Number Input" type="number" />
-          <DraggableField name="Date Picker" type="date" />
-          <DraggableField name="Checkbox" type="checkbox" />
-          <DraggableField name="Dropdown Select" type="dropdown" />
-          <DraggableField name="Radio Buttons" type="radio" />
+          <div className="flex  gap-4  flex-wrap w-24 lg:flex-none">
+            <DraggableField name="Text Input" type="text" />
+            <DraggableField name="Number Input" type="number" />
+            <DraggableField name="Date Picker" type="date" />
+            <DraggableField name="Checkbox" type="checkbox" />
+            <DraggableField name="Dropdown Select" type="dropdown" />
+            <DraggableField name="Radio Buttons" type="radio" />
+          </div>
         </div>
 
         <div className="flex-1  p-2">
@@ -181,7 +185,6 @@ const Home = () => {
               className="w-fit p-3 border rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-200"
             />
           </div>
-
           <DropZone onDrop={handleDrop}>
             {questions.length === 0 ? (
               <p className="text-center text-gray-400">
@@ -310,21 +313,23 @@ const Home = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 border rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-200 mb-4"
-            />  <br/>
+            />{" "}
+            <br />
             <button
               onClick={handleSubmitForm}
               className="w-full p-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-colors duration-300"
             >
               {update ? "Update Form" : " Submit Form"}
             </button>
-        <br/>
-          <button
-            onClick={handleBack}
-            className="w-full p-3 mx-auto bg-indigo-600 justi hover:bg-indigo-300 my-8 text-white rounded-lg shadow  transition-colors duration-300"
-          >
-            Back to previous page
-          </button>
-        </div>  </div>
+            <br />
+            <button
+              onClick={handleBack}
+              className="w-full p-3 mx-auto bg-indigo-600 justi hover:bg-indigo-300 my-8 text-white rounded-lg shadow  transition-colors duration-300"
+            >
+              Back to previous page
+            </button>
+          </div>{" "}
+        </div>
       </div>
     </DndProvider>
   );

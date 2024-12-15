@@ -7,14 +7,18 @@ const Dashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [user,setUser] = useState(null)
+  
   const mail = location.state?.user?.Email;
+  
   const data =async()=>{
    try{
      const response = await axios.post(`${apiUrl}/formname`,{
       email:mail
     })
+    
  if (response.data) {  
   setUser(response.data);  
+  
 } else {
   console.error('No data returned from server');
 }
