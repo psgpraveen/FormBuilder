@@ -157,7 +157,7 @@ const Home = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen flex bg-gray-50">
+      <div className="min-h-screen md:flex bg-gray-50">
         <div className="w-1/4 p-2 bg-white border-r shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Toolbox</h2>
           <DraggableField name="Text Input" type="text" />
@@ -178,7 +178,7 @@ const Home = () => {
               placeholder="Form Name"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-3 border rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-200"
+              className="w-fit p-3 border rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-200"
             />
           </div>
 
